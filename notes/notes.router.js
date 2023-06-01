@@ -1,13 +1,13 @@
 const schoolsRouter = require("express").Router();
 const { connect } = require("../app-data-source")
-const schoolsEntity = require("./notes.entity") 
+const notesEntity = require("./notes.entity") 
 
 
-schoolsRouter.get("/", async(req,res)=>{
+notesRouter.get("/", async(req,res)=>{
     let message = "", status;
     try{
         const connection = await connect()
-        const schools = await connection.getRepository(schoolsEntity).find()
+        const schools = await connection.getRepository(notesEntity).find()
         status = 200;
         message = schools;
     }catch(e){
@@ -18,12 +18,12 @@ schoolsRouter.get("/", async(req,res)=>{
     }
 })
 
-schoolsRouter.post("/", async(req,res)=>{
+notesRouter.post("/", async(req,res)=>{
     let message = "", status;
     try{
         const connection = await connect()
-        const schoolsData = await connection.getRepository(schoolsEntity).create(req.body)
-        const results = await connection.getRepository(schoolsEntity).save(schoolsData)
+        const schoolsData = await connection.getRepository(notesEntity).create(req.body)
+        const results = await connection.getRepository(notesEntity).save(schoolsData)
         status = 200;
         message = results;
     }catch(e){
@@ -34,13 +34,13 @@ schoolsRouter.post("/", async(req,res)=>{
     }
 })
 
-schoolsRouter.put("/:id", async(req,res)=>{
+notesRouter.put("/:id", async(req,res)=>{
 let message = "", status;
     try{
         const connection = await connect()
         const school_id = req.params.id;
-        const schoolsData = await connection.getRepository(schoolsEntity).create(req.body)
-        const results = await connection.getRepository(schoolsEntity).update({...schoolsData},{id:school_id})
+        const schoolsData = await connection.getRepository(notesEntity).create(req.body)
+        const results = await connection.getRepository(notesEntity).update({...schoolsData},{id:school_id})
         status = 200;
         message = results;
     }catch(e){
@@ -53,12 +53,12 @@ let message = "", status;
     
 })
 
-schoolsRouter.delete("/:id", (req,res)=>{
+notesRouter.delete("/:id", (req,res)=>{
 
 
     
 })
 
 module.exports = {
-    schoolsRouter
+    notesRouter
 }

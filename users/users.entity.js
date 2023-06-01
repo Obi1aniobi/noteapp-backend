@@ -20,5 +20,13 @@ module.exports =  new EntitySchema({
             type: "text",
         },
     },
+    relations: {
+        notes: {
+            target: "notes",  // the name given in the users entity.js
+            type: "one-to-many", //every note can have only one author
+            cascade: true,
+            inverseSide: "user"
+        },
+    }
     
 })

@@ -26,8 +26,6 @@ module.exports =  new EntitySchema({
         user: {
             target: "users",  // the name given in the users entity.js
             type: "many-to-one", //every note can have only one author
-            joinTable: true,
-            cascade: true,
         },
     },
 })
